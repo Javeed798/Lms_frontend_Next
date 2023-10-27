@@ -66,9 +66,8 @@ const Header: FC<Props> = ({activeItem,setOpen}) => {
                             className={"cursor-pointer dark:text-white text-black"}
                             onClick={() => setOpenSidebar(true)}
                             />
-
                           </div>
-                            <HiOutlineUserCircle size={25} className={"cursor-pointer dark:text-white text-black"} onClick={() => setOpen(true)} />
+                            <HiOutlineUserCircle size={25} className={"800px:block hidden cursor-pointer dark:text-white text-black"} onClick={() => setOpen(true)} />
                         </div>
                     </div>
                 </div>
