@@ -46,6 +46,8 @@ const Verification: FC<Props> = ({setRoute}) => {
         }
     }
 
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div>
             <h1 className={`${styles.title}`}>Verify Your Account</h1>
@@ -67,6 +69,7 @@ const Verification: FC<Props> = ({setRoute}) => {
                      `}
                     placeholder={""}
                            maxLength={1}
+                           //  jobhi mera key hoga uske value ko target karke uska value leliya jayega [NEECHE DEKHO NEECHE]
                            value={verifyNumber[key as keyof VerifyNumber]}
                            onChange={(e) => handleInputChange(index,e.target.value)}
                     />
@@ -90,3 +93,29 @@ const Verification: FC<Props> = ({setRoute}) => {
     );
 };
 export default Verification;
+
+
+
+/*
+
+=> what is this????     value={verifyNumber[key as keyof VerifyNumber]}
+
+                        type VerifyNumber = {
+                          age: number;
+                          height: number;
+                          weight: number;
+                        };
+
+                        const verifyNumber: VerifyNumber = {
+                          age: 30,
+                          height: 180,
+                          weight: 70,
+                        };
+
+                        const key = "height";
+
+                        const value = verifyNumber[key as keyof VerifyNumber];
+
+                        console.log(value); // This will output 180
+
+ */
