@@ -6,18 +6,26 @@ import NavItems from "@/app/utils/NavItems";
 import ThemeSwitcher from "@/app/utils/ThemeSwitcher";
 import {HiOutlineMenuAlt3} from "react-icons/hi";
 import {HiOutlineUserCircle} from "react-icons/hi2";
+import CustomModal from "@/app/utils/CustomModal";
+import Login from "./Auth/Login";
+import Signup from "@/app/components/Auth/Signup";
+import Verification from "@/app/components/Auth/Verification";
 
+
+// NAVBAR LOGIN SIGNUP (open,setOpen) =>  3) Access them In the props and destructure the below Props
 type Props = {
     open: boolean;
     setOpen: (open: boolean) => void;
-    activeItem:number
+    activeItem:number,
+    route: string,
+    setRoute: (route: string) => void
 };
 
-const Header: FC<Props> = ({activeItem,setOpen}) => {
+const Header: FC<Props> = ({activeItem,open,setOpen,route,setRoute}) => {
+    console.log("open",open)
 
     const [active, setActive] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
-
 
     // whenever im scrolling and if it exceeds 80px i need to make my header to be fixed and should undergo all the active
     // classes' functionality.
@@ -67,6 +75,7 @@ const Header: FC<Props> = ({activeItem,setOpen}) => {
                             onClick={() => setOpenSidebar(true)}
                             />
                           </div>
+                            {/*  NAVBAR LOGIN SIGNUP (open,setOpen) 4) Here we are setting that open setOpen functionality  */}
                             <HiOutlineUserCircle size={25} className={"800px:block hidden cursor-pointer dark:text-white text-black"} onClick={() => setOpen(true)} />
                         </div>
                     </div>
@@ -81,6 +90,7 @@ const Header: FC<Props> = ({activeItem,setOpen}) => {
                         >
                             <div className={"w-[70%] fixed z-[999999] h-screen bg-white dark:bg-slate-900 dark:bg-opacity-90 top-0 right-0"}>
                                 <NavItems activeItem={activeItem} isMobile={true}/>
+                                {/* NAVBAR LOGIN SIGNUP (open,setOpen) 5) This for mobile screen */}
                                 <HiOutlineUserCircle
                                     size={25}
                                     className={"cursor-pointer ml-5 my-2 dark:text-white text-black"}
@@ -96,6 +106,70 @@ const Header: FC<Props> = ({activeItem,setOpen}) => {
                     )
                 }
             </div>
+            {
+                route === "Login" && (
+                    <>
+                        {/* NAVBAR LOGIN SIGNUP (open,setOpen) 6) Finally here we are passing them in the custom modal to show that */}
+                        {
+                            open && (
+                                <>
+                                    <CustomModal
+                                    open={open}
+                                    setOpen={setOpen}
+                                    setRoute={setRoute}
+                                    activeItem={activeItem}
+                                    component={Login}
+                                    />
+                                </>
+                            )
+                        }
+                    </>
+                )
+            }
+
+            {
+                route === "Sign-Up" && (
+                    <>
+                        {/* NAVBAR LOGIN SIGNUP (open,setOpen) 6) Finally here we are passing them in the custom modal to show that */}
+
+                        {
+                            open && (
+                                <>
+                                    <CustomModal
+                                        open={open}
+                                        setOpen={setOpen}
+                                        setRoute={setRoute}
+                                        activeItem={activeItem}
+                                        component={Signup}
+                                    />
+                                </>
+                            )
+                        }
+                    </>
+                )
+            }
+
+            {
+                route === "Verification" && (
+                    <>
+                        {/* NAVBAR LOGIN SIGNUP (open,setOpen) 6) Finally here we are passing them in the custom modal to show that */}
+
+                        {
+                            open && (
+                                <>
+                                    <CustomModal
+                                        open={open}
+                                        setOpen={setOpen}
+                                        setRoute={setRoute}
+                                        activeItem={activeItem}
+                                        component={Verification}
+                                    />
+                                </>
+                            )
+                        }
+                    </>
+                )
+            }
         </div>
     );
 };
