@@ -9,13 +9,17 @@ interface Props {
 }
 
 const Page : FC<Props> = (props) => {
+
+    //  NAVBAR LOGIN SIGNUP (open,setOpen) =>  1) to open or close the login and signup form.
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(0);
+    const [route,setRoute] = useState("Login")
 
     return (
         <div>
             <Heading title={"E Learning"} description={"This is our Home"} keywords={"Programming, Mern, Redux"} />
-            <Header open={open} setOpen={setOpen} activeItem={activeItem} />
+            {/* NAVBAR LOGIN SIGNUP (open,setOpen) =>  2) Pass those state data in Header */}
+            <Header open={open} setOpen={setOpen} activeItem={activeItem} route={route} setRoute={setRoute} />
             <Hero />
         </div>
     )
